@@ -2,24 +2,17 @@ package Check;
 
 enum Color{
 	WHITE(), BLACK(), NONE();
-	
-	/*private int name;
-	private Color(int name) {
-		this.name = name;
-	}
-	public int getPlayerNum() {
-		return this.name;
-	}*/
 }
 
 public class BoardPosition extends Position{
 	
 	private Color playerColor;
+	private int index;
 	
-	
-	public BoardPosition(int x, int y, Color color) {
+	public BoardPosition(int x, int y, Color color, int index) {
 		super(x, y);
 		this.playerColor = color;
+		this.index = index;
 	}
 	
 	public BoardPosition(int x, int y) {
@@ -29,6 +22,18 @@ public class BoardPosition extends Position{
 	
 	public Color getPlayer() {
 		return this.playerColor;
+	}
+	
+	public void setColor(Color color) {
+		this.playerColor = color;
+	}
+	
+	public int getIndex() {
+		return this.index;
+	}
+	
+	public void setIndex(int index) {
+		this.index = index;
 	}
 	
 }
