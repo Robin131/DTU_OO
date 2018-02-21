@@ -10,19 +10,25 @@ public class NormalPiece extends Piece{
 	}
 
 	@Override
-	public boolean move(Position oldPosition, Position newPosition, BoardPosition[][] p) {
+	public boolean moveTo(Position newPosition) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	protected boolean stepMove(Position oldPosition, Position newPosition, BoardPosition[][] p) {
+	public boolean moveFrom() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	protected boolean stepMove(Position oldPosition, Position newPosition) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	protected boolean jump(Position oldPosition, Position newPosition, BoardPosition[][] p) {
+	protected boolean jump(Position oldPosition, Position newPosition) {
 		// TODO Auto-generated method stub
 		return false;
 	}

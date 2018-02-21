@@ -15,11 +15,17 @@ abstract class Piece {
 	}
 	
 	//The public move function
-	abstract public boolean move(Position oldPosition, Position newPosition, final BoardPosition p[][]);
-	
+	abstract public boolean moveTo(Position newPosition);
+	abstract public boolean moveFrom();
 	//Move by 1 step or jump
-	abstract protected boolean stepMove(Position oldPosition, Position newPosition, final BoardPosition p[][]);
-	abstract protected boolean jump(Position oldPosition, Position newPosition, final BoardPosition p[][]);
+	abstract protected boolean stepMove(Position oldPosition, Position newPosition);
+	abstract protected boolean jump(Position oldPosition, Position newPosition);
+	
+	public void move(Position newPosition) {
+
+		this.setPosition(newPosition.getX(), newPosition.getY()); 
+	
+	}
 	
 	public Position getPosition() {
 		return (new Position(this.position.getX(), this.position.getY()));
