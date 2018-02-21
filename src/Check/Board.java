@@ -37,41 +37,33 @@ public class Board {
 		pieces[22] = new NormalPiece(4, 7, Color.WHITE);
 		pieces[23] = new NormalPiece(6, 7, Color.WHITE);
 	}
-	
 	private void initialBoardPosition() {
 		positions = new BoardPosition[8][8];
+		// first initial all the position to NONE
 		for(int i = 0; i <=7; i++) {
 			for(int j = 0; j <= 7; j++) {
-				for(int k = 0; k <= 23; k++) {
-					if(pieces[k].getPosition().getX() == i & pieces[k].getPosition().getY() == j )
-						positions[i][j] = new BoardPosition(i, j, pieces[k].getPlayerColor());
-					else positions[i][j] = new BoardPosition(i, j);
-				}
+				positions[i][j] = new BoardPosition(i, j);
 			}
 		}
-		
-		//
+		// change the color for every position with a piece
+		for(int i = 0; i <= 23; i++) {
+			positions[pieces[i].getPosition().getX()][p.getPosition().getY()].setColor(pieces[i].getPlayerColor());
+			positions[pieces[i].getPosition().getX()][p.getPosition().getY()].setIndex(i);
+		}
 		
 		
 	}
-	
-	//TODO
-	public boolean moveFrom(BoardPosition oldPosition) {
-		boolean flag = true;
-		if(!oldPosition.isOnBoard())
-			flag = false;
-		return flag;
+	public boolean moveFrom(Position oldPosition, Color playerColor) {
+		//first see whether there is piece for that player
+		if(positions[oldPosition.getX()][oldPosition.getY()].getPlayer() != playerColor)
+			return false;
+		//if the piece belongs to the player
+		int pieceIndex = positions[oldPosition.getX()][oldPosition.getY()].getIndex();
+		return pieces[pieceIndex];
 	}
-	
-	//TODO
 	public boolean moveTo(Position oldPosition, Position newPosition) {
-		boolean flag = true;
-		if(!oldPosition.isOnBoard())
-			flag = false;
-		return flag;
+		
 	}
-	
-
 	
 	public static void draw() {
 		
