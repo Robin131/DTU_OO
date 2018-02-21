@@ -25,8 +25,10 @@ public class Position {
 		this.y = y;
 	}
 	
-	// TODO
 	public boolean isOnBoard() {
-		return false;
+		boolean flag = true;
+		if(this.x > 7 || this.x < 0 || this.y < 0 || this.y > 7)
+			flag = false; 
+		return flag;
 	}
 }
