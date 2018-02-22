@@ -1,5 +1,7 @@
 package Check;
 
+import Check.Position.Direction;
+
 public class NormalPiece extends Piece{
 	
 	public NormalPiece(Position p, Color color) {
@@ -11,13 +13,17 @@ public class NormalPiece extends Piece{
 
 	@Override
 	public boolean moveTo(Position newPosition) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	public boolean moveFrom() {
-		// TODO Auto-generated method stub
+		switch(this.getPlayerColor()){
+		case Color.BLACK:{
+			if(this.getPosition().returnPosition(Direction.RightBack) == Color.NONE)
+		}
+		}
 		return false;
 	}
 	

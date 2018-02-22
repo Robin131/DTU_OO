@@ -22,7 +22,8 @@ abstract class Piece {
 	abstract protected boolean jump(Position oldPosition, Position newPosition);
 	
 	public void move(Position newPosition) {
-
+		Board.positions[this.getPosition().getX()][this.getPosition().getY()].setColor(Color.NONE);
+		Board.positions[newPosition.getX()][newPosition.getY()].setColor(playerColor);
 		this.setPosition(newPosition.getX(), newPosition.getY()); 
 	
 	}
