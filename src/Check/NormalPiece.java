@@ -60,14 +60,14 @@ public class NormalPiece extends Piece{
 		switch(this.getPlayerColor()) {
 		case BLACK:{
 			if(Board.positions[newPosition.getX()][newPosition.getY()].getPlayer() == Color.NONE
-					& newPosition.getY() == oldPosition.getY() + 1
+					& (newPosition.getY() == oldPosition.getY() + 1)
 					 & Math.abs(newPosition.getX() - oldPosition.getX()) == 1)
 				flag = true;
 			break;
 		}
 		case WHITE:{
 			if(Board.positions[newPosition.getX()][newPosition.getY()].getPlayer() == Color.NONE
-					& newPosition.getY() == oldPosition.getY() - 1
+					& (newPosition.getY() == oldPosition.getY() - 1)
 					 & Math.abs(newPosition.getX() - oldPosition.getX()) == 1)
 				flag = true;
 			break;
@@ -108,9 +108,11 @@ public class NormalPiece extends Piece{
 
 	public void move(Position newPosition) {
 		Position middlePosition = new Position((int)(0.5 * this.getPosition().getX() + 0.5 * newPosition.getX()), (int)(0.5 * this.getPosition().getY() + 0.5 * newPosition.getY()));
-		
-		Board.positions[this.getPosition().getX()][this.getPosition().getY()].setColor(Color.NONE);
+		//change new position's color to this player on board
 		Board.positions[newPosition.getX()][newPosition.getY()].setColor(this.getPlayerColor());
+		//change old position's color to NONE on board
+		Board.positions[this.getPosition().getX()][this.getPosition().getY()].setColor(Color.NONE);
+		
 		this.setPosition(newPosition.getX(), newPosition.getY()); 
 		//move the piece by exchange the old & new position's Color
 		if(Math.abs(newPosition.getX() - this.getPosition().getX()) == 2) 
