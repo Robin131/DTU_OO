@@ -11,6 +11,11 @@ public class NormalPiece extends Piece{
 		super(x, y, color);
 	}
 
+	public Color getNeighborColor(Direction d) {
+		return Board.positions[this.getPosition().getX()][this.getPosition().getY()]
+				.returnPosition(d).getPlayer();
+	}
+	
 	@Override
 	public boolean moveTo(Position newPosition) {
 		boolean flag = false;
@@ -27,10 +32,10 @@ public class NormalPiece extends Piece{
 		switch(this.getPlayerColor()){
 		case BLACK:{
 			//BLACK Piece move backward on the board;
-			if(Board.returnPosition(this.getPosition(), Direction.RIGHTBACK).getPlayer() == Color.NONE
-				|| Board.returnPosition(this.getPosition(), Direction.LEFTBACK).getPlayer() == Color.NONE) 
+			if(this.getNeighborColor(Direction.RIGHTBACK) == Color.NONE
+				|| this.getNeighborColor(Direction.LEFTBACK) == Color.NONE) 
 				flag = true;
-			if((Board.returnPosition(this.getPosition(), Direction.RIGHTBACK2).getPlayer() == Color.NONE
+			if((this.getNeighborColor(Direction.RIGHTBACK2) == Color.NONE
 				& Board.returnPosition(this.getPosition(), Direction.RIGHTBACK).getPlayer() == Color.WHITE)
 				|| (Board.returnPosition(this.getPosition(), Direction.LEFTBACK2).getPlayer() == Color.NONE
 				  & Board.returnPosition(this.getPosition(), Direction.LEFTBACK).getPlayer() == Color.WHITE)) 
@@ -38,7 +43,7 @@ public class NormalPiece extends Piece{
 			break;
 		}
 		case WHITE:{
-			if(Board.returnPosition(this.getPosition(), Direction.RIGHTAHEAD).getPlayer() == Color.NONE
+			if(Board.positions[this.getPosition().getX()][this.getPosition().getY()].returnPosition(Direction.RIGHTAHEAD).getPlayer() == Color.NONE
 				|| Board.returnPosition(this.getPosition(), Direction.LEFTAHEAD).getPlayer() == Color.NONE) 
 				flag = true;
 			if((Board.returnPosition(this.getPosition(), Direction.RIGHTAHEAD2).getPlayer() == Color.NONE
