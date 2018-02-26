@@ -1,5 +1,6 @@
 package Check;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Check {
@@ -9,7 +10,6 @@ public class Check {
 	public static Player player2 = new Player(Color.WHITE);
 	public static Position oldPosition = new Position(0, 0);
 	public static Position newPosition = new Position(0, 0);
-	public static Scanner input = new Scanner(System.in);
 	
 	public static void main(String[] args) {
 		
@@ -49,18 +49,54 @@ public class Check {
 	public static void inputOldPosition(Player p) {
 		System.out.printf("Turn of player no. " + p.getColor().getPlayerNum() + "\n" +
 				"Coordinate of piece to move\n");
-		System.out.print("Enter x:");
-		oldPosition.setX(input.nextInt());
-		System.out.print("Enter y:");
-		oldPosition.setY(input.nextInt());
+		while(true) {
+			try {
+				Scanner input = new Scanner(System.in);
+				System.out.print("Enter x:");
+				oldPosition.setX(input.nextInt());
+			}catch (InputMismatchException e) {
+				System.out.println("Bad Input, please try again!");
+				continue;
+			}
+			break;
+		}
+		while(true) {
+			try {
+				Scanner input = new Scanner(System.in);
+				System.out.print("Enter y:");
+				oldPosition.setY(input.nextInt());
+			}catch (InputMismatchException e) {
+				System.out.println("Bad Input, please try again!");
+				continue;
+			}
+			break;
+		}
 	}
 	
 	public static void inputNewPosition(Player p) {
 		System.out.println("Coordinate of new position");
-		System.out.print("Enter x:");
-		newPosition.setX(input.nextInt());
-		System.out.print("Enter y:");
-		newPosition.setY(input.nextInt());
+		while(true) {
+			try {
+				Scanner input = new Scanner(System.in);
+				System.out.print("Enter x:");
+				newPosition.setX(input.nextInt());
+			}catch (InputMismatchException e) {
+				System.out.println("Bad Input, please try again!");
+				continue;
+			}
+			break;
+		}
+		while(true) {
+			try {
+				Scanner input = new Scanner(System.in);
+				System.out.print("Enter y:");
+				newPosition.setY(input.nextInt());
+			}catch (InputMismatchException e) {
+				System.out.println("Bad Input, please try again!");
+				continue;
+			}
+			break;
+		}
 	}
 
 }
