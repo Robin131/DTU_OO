@@ -29,7 +29,7 @@ public class Check {
 		// whether there is a piece on oldPosition
 		// whether the chosen piece is from the player 
 		// whether the piece can move
-		while(!(board.getPiece(oldPosition).moveFrom() & board.moveFrom(oldPosition, p.getColor()))){
+		while(!(board.moveFrom(oldPosition, p.getColor()) && board.getPiece(oldPosition).moveFrom())){
 			System.out.println("Wrong!Decide again!");
 			board.draw();
 			inputOldPosition(p);
@@ -38,7 +38,7 @@ public class Check {
 		// To check
 		// whether the new Position is empty
 		// whether the piece can move in this way
-		while(!(board.moveTo(oldPosition, newPosition) & board.getPiece(oldPosition).moveTo(newPosition))) {
+		while(!(board.moveTo(oldPosition, newPosition) && board.getPiece(oldPosition).moveTo(newPosition))) {
 			System.out.println("Wrong!Decide again!");
 			board.draw();
 			inputNewPosition(p);    

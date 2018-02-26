@@ -27,6 +27,7 @@ public class BoardPosition extends Position{
 	public BoardPosition(int x, int y) {
 		super(x, y);
 		this.playerColor = Color.NONE;
+		index = -1;
 	}
 	
 	public Color getPlayer() {

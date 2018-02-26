@@ -46,6 +46,11 @@ public class Board {
 		pieces[21] = new NormalPiece(2, 7, Color.WHITE);
 		pieces[22] = new NormalPiece(4, 7, Color.WHITE);
 		pieces[23] = new NormalPiece(6, 7, Color.WHITE);
+		
+		for(int i = 0; i<= 23; i++) {
+			pieces[i].setIndex(i);
+		}
+		
 	}
 	private void initialBoardPosition() {
 		positions = new BoardPosition[8][8];
