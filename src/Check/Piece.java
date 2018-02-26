@@ -1,6 +1,6 @@
 package Check;
 
-abstract class Piece {
+public abstract class Piece {
 	private Position position;
 	private Color playerColor;
 	private int index;
