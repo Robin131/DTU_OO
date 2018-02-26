@@ -107,18 +107,20 @@ public class NormalPiece extends Piece{
 	}
 
 	public void move(Position newPosition) {
+		//apply the instruction
+		
 		Position middlePosition = new Position((int)(0.5 * this.getPosition().getX() + 0.5 * newPosition.getX()), (int)(0.5 * this.getPosition().getY() + 0.5 * newPosition.getY()));
+		//move the piece by exchange the old & new position's Color
 		//change new position's color to this player on board
 		Board.positions[newPosition.getX()][newPosition.getY()].setColor(this.getPlayerColor());
 		//change old position's color to NONE on board
 		Board.positions[this.getPosition().getX()][this.getPosition().getY()].setColor(Color.NONE);
-		
-		this.setPosition(newPosition.getX(), newPosition.getY()); 
-		//move the piece by exchange the old & new position's Color
-		if(Math.abs(newPosition.getX() - this.getPosition().getX()) == 2) 
+		//if jump, eat the piece
+		if(Math.abs(newPosition.getX() - this.getPosition().getX()) == 2) {
 			Board.positions[middlePosition.getX()][middlePosition.getY()].setColor(Color.NONE);
-		//eat the middle piece if jump
-			
-	//apply the instruction
+		}
+		//change the position in pieces[]
+		this.setPosition(newPosition.getX(), newPosition.getY());
+
 	}
 }
