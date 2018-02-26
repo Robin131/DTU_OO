@@ -13,6 +13,7 @@ public class Check {
 	
 	public static void main(String[] args) {
 		
+		// end the game by stopping the program manually
 		while(true)
 		{
 			turnOfPlayer(player1);
@@ -24,12 +25,19 @@ public class Check {
 	public static void turnOfPlayer(Player p) {
 		board.draw();
 		inputOldPosition(p);
+		// To check
+		// whether there is a piece on oldPosition
+		// whether the chosen piece is from the player 
+		// whether the piece can move
 		while(!(board.getPiece(oldPosition).moveFrom() & board.moveFrom(oldPosition, p.getColor()))){
 			System.out.println("Wrong!Decide again!");
 			board.draw();
 			inputOldPosition(p);
 		}
 		inputNewPosition(p);
+		// To check
+		// whether the new Position is empty
+		// whether the piece can move in this way
 		while(!(board.moveTo(oldPosition, newPosition) & board.getPiece(oldPosition).moveTo(newPosition))) {
 			System.out.println("Wrong!Decide again!");
 			board.draw();
