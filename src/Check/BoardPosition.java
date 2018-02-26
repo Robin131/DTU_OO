@@ -1,5 +1,7 @@
 package Check;
 
+import Check.Board.Direction;
+
 enum Color{
 	WHITE("2"), BLACK("1"), NONE(" ");
 	String num = null;
@@ -41,6 +43,14 @@ public class BoardPosition extends Position{
 	
 	public void setIndex(int index) {
 		this.index = index;
+	}
+	
+	
+	// return the info of the specific direction of the position 
+	public BoardPosition returnPosition(Direction d) {
+		if(this.getX() + d.deltaX > 7 || this.getX() + d.deltaX < 0 || this.getY() + d.deltaY > 7 || this.getY() + d.deltaY < 0)
+			;
+		return(Board.positions[this.getX() + d.deltaX][this.getY() + d.deltaY]);
 	}
 	
 }
