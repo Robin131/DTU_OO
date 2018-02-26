@@ -48,8 +48,7 @@ public class BoardPosition extends Position{
 	
 	// return the info of the specific direction of the position 
 	public BoardPosition returnPosition(Direction d) {
-		if(this.getX() + d.deltaX > 7 || this.getX() + d.deltaX < 0 || this.getY() + d.deltaY > 7 || this.getY() + d.deltaY < 0)
-			;
+
 		return(Board.positions[this.getX() + d.deltaX][this.getY() + d.deltaY]);
 	}
 	
