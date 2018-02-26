@@ -18,6 +18,5 @@ public class Player {
 	public boolean moveTo(Position oldPosition, Position newPosition, Board board, Color playerColor) {
 		return board.moveTo(oldPosition, newPosition);
 	}
-	
 
 }

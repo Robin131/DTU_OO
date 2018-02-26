@@ -20,13 +20,7 @@ abstract class Piece {
 	//Move by 1 step or jump
 	abstract protected boolean stepMove(Position oldPosition, Position newPosition);
 	abstract protected boolean jump(Position oldPosition, Position newPosition);
-	
-	public void move(Position newPosition) {
-		Board.positions[this.getPosition().getX()][this.getPosition().getY()].setColor(Color.NONE);
-		Board.positions[newPosition.getX()][newPosition.getY()].setColor(playerColor);
-		this.setPosition(newPosition.getX(), newPosition.getY()); 
-	
-	}
+	abstract public void move(Position newPosition);
 	
 	public Position getPosition() {
 		return (new Position(this.position.getX(), this.position.getY()));

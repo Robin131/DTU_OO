@@ -3,6 +3,24 @@ package Check;
 public class Board {
 	private Piece pieces[];
 	public static BoardPosition positions[][];
+	public enum Direction{
+		LEFTAHEAD(-1, -1), LEFTBACK(-1, 1), RIGHTAHEAD(1, -1), RIGHTBACK(1, 1), 
+		LEFTAHEAD2(-2, -2), LEFTBACK2(-2, 2), RIGHTAHEAD2(2, -2), RIGHTBACK2(2, 2);
+		int deltaX, deltaY;
+		private Direction(int deltaX, int deltaY){
+			this.deltaX = deltaX;
+			this.deltaY = deltaY;
+		}
+	}
+	
+	public static BoardPosition returnPosition(Position p ,Direction d) {
+		BoardPosition p_new = new BoardPosition(0,0);
+		p_new.setX(p.getX() + d.deltaX);
+		p_new.setY(p.getY() + d.deltaY);
+		try{p_new.setColor(positions[p_new.getX()][p_new.getY()].getPlayer());}
+		catch(ArrayIndexOutOfBoundsException e) {}
+		return p_new;
+	}
 	
 	public Board() {
 		initialPieces();
@@ -47,26 +65,49 @@ public class Board {
 		}
 		// change the color for every position with a piece
 		for(int i = 0; i <= 23; i++) {
-			positions[pieces[i].getPosition().getX()][p.getPosition().getY()].setColor(pieces[i].getPlayerColor());
-			positions[pieces[i].getPosition().getX()][p.getPosition().getY()].setIndex(i);
+			positions[pieces[i].getPosition().getX()][pieces[i].getPosition().getY()].setColor(pieces[i].getPlayerColor());
+			positions[pieces[i].getPosition().getX()][pieces[i].getPosition().getY()].setIndex(i);
 		}
-		
 		
 	}
 	public boolean moveFrom(Position oldPosition, Color playerColor) {
-		//first see whether there is piece for that player
-		if(positions[oldPosition.getX()][oldPosition.getY()].getPlayer() != playerColor)
-			return false;
-		//if the piece belongs to the player
+		boolean flag = true;
+		if(!oldPosition.isOnBoard())
+			flag = false;
+		else if(positions[oldPosition.getX()][oldPosition.getY()].getPlayer() != playerColor)
+			flag = false;
+		return flag;
+		//if the piece is on the board and if it belongs to the player
+	}
+	
+	public boolean moveTo(Position oldPosition, Position newPosition) {
+		boolean flag = true;
+		if(!newPosition.isOnBoard())
+			flag = false;
+		else if(positions[newPosition.getX()][newPosition.getY()].getPlayer() != Color.NONE)
+			flag = false;
+		return flag;
+		//if the newPosition is on board and if the position is empty
+}
+	
+	public Piece getPiece(Position oldPosition) {
 		int pieceIndex = positions[oldPosition.getX()][oldPosition.getY()].getIndex();
 		return pieces[pieceIndex];
-	}
-	public boolean moveTo(Position oldPosition, Position newPosition) {
-		
-	}
+		//According oldPosition to pick up a piece
+	} 	
 	
-	public static void draw() {
-		
+	public void draw() {
+		String xAxis = "    0 1 2 3 4 5 6 7      <- X axis\n";
+		String frameTop = "   +----------------+\n";
+		String frameBottom = "   +----------------+\n    0 1 2 3 4 5 6 7  \n";
+		System.out.print(xAxis + frameTop);
+		for(int i = 0; i <= 7; i++) {
+			System.out.print(" " + i + " |");
+			for(int j = 0; j <= 7; j++) {
+				System.out.print(positions[j][i].getPlayer().getPlayerNum() + " ");
+			}
+			System.out.print("|\n");
+		}
+		System.out.print(frameBottom);
 	}
-	
 }
