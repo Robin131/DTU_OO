@@ -14,13 +14,17 @@ abstract class Piece {
 		this.playerColor = color;
 	}
 	
-	//The public move function
+	// Judge whether this piece can move to the new position
 	abstract public boolean moveTo(Position newPosition);
+	// Judge whether this piece can move from the new position
 	abstract public boolean moveFrom();
-	//Move by 1 step or jump
+	// Judge whether this piece can be moved by only 1 step
 	abstract protected boolean stepMove(Position oldPosition, Position newPosition);
+	// Judge whether this piece can jump
 	abstract protected boolean jump(Position oldPosition, Position newPosition);
+	// move the piece to the new position
 	abstract public void move(Position newPosition);
+	
 	
 	public Position getPosition() {
 		return (new Position(this.position.getX(), this.position.getY()));
