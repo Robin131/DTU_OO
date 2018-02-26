@@ -3,6 +3,7 @@ package Check;
 public class Board {
 	private Piece pieces[];
 	public static BoardPosition positions[][];
+	// define 8 directions to simplify the code 
 	public enum Direction{
 		LEFTAHEAD(-1, -1), LEFTBACK(-1, 1), RIGHTAHEAD(1, -1), RIGHTBACK(1, 1), 
 		LEFTAHEAD2(-2, -2), LEFTBACK2(-2, 2), RIGHTAHEAD2(2, -2), RIGHTBACK2(2, 2);
@@ -13,13 +14,14 @@ public class Board {
 		}
 	}
 	
+	// return the info of the specific direction of the position 
 	public static BoardPosition returnPosition(Position p ,Direction d) {
-		BoardPosition p_new = new BoardPosition(0,0);
-		p_new.setX(p.getX() + d.deltaX);
-		p_new.setY(p.getY() + d.deltaY);
-		try{p_new.setColor(positions[p_new.getX()][p_new.getY()].getPlayer());}
+		BoardPosition pNew = new BoardPosition(0,0);
+		pNew.setX(p.getX() + d.deltaX);
+		pNew.setY(p.getY() + d.deltaY);
+		try{pNew.setColor(positions[pNew.getX()][pNew.getY()].getPlayer());}
 		catch(ArrayIndexOutOfBoundsException e) {}
-		return p_new;
+		return pNew;
 	}
 	
 	public Board() {
@@ -70,6 +72,7 @@ public class Board {
 		}
 		
 	}
+	//check whether the oldPosition is on board and whether it holds the piece from the player 
 	public boolean moveFrom(Position oldPosition, Color playerColor) {
 		boolean flag = true;
 		if(!oldPosition.isOnBoard())
@@ -77,9 +80,8 @@ public class Board {
 		else if(positions[oldPosition.getX()][oldPosition.getY()].getPlayer() != playerColor)
 			flag = false;
 		return flag;
-		//if the piece is on the board and if it belongs to the player
 	}
-	
+	//check whether the newPosition is on board and whether the position is empty
 	public boolean moveTo(Position oldPosition, Position newPosition) {
 		boolean flag = true;
 		if(!newPosition.isOnBoard())
@@ -87,15 +89,15 @@ public class Board {
 		else if(positions[newPosition.getX()][newPosition.getY()].getPlayer() != Color.NONE)
 			flag = false;
 		return flag;
-		//if the newPosition is on board and if the position is empty
-}
-	
+		
+	}
+	// return the piece on that position
 	public Piece getPiece(Position oldPosition) {
 		int pieceIndex = positions[oldPosition.getX()][oldPosition.getY()].getIndex();
 		return pieces[pieceIndex];
 		//According oldPosition to pick up a piece
 	} 	
-	
+	// draw the board
 	public void draw() {
 		String xAxis = "    0 1 2 3 4 5 6 7      <- X axis\n";
 		String frameTop = "   +----------------+\n";
