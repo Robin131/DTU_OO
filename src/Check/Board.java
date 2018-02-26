@@ -14,16 +14,6 @@ public class Board {
 		}
 	}
 	
-	// return the info of the specific direction of the position 
-	public static BoardPosition returnPosition(Position p ,Direction d) {
-		BoardPosition pNew = new BoardPosition(0,0);
-		pNew.setX(p.getX() + d.deltaX);
-		pNew.setY(p.getY() + d.deltaY);
-		try{pNew.setColor(positions[pNew.getX()][pNew.getY()].getPlayer());}
-		catch(ArrayIndexOutOfBoundsException e) {}
-		return pNew;
-	}
-	
 	public Board() {
 		initialPieces();
 		initialBoardPosition();
